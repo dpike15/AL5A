@@ -6,21 +6,26 @@ include 'sqs.php';
 <body><h2>Manual</h2><center><h1>Object Retrieval</h1>
 <h4 id='text'>Retrieval in Progress</h4>
 <?php
-if(isset($_GET['body'])){
+
   $client->sendMessage(array(
-                                'QueueUrl' => "https://sqs.us-east-1.amazonaws.com/391901324314/maintenanceArduino",
+                                'QueueUrl' => 'https://sqs.us-east-1.amazonaws.com/391901324314/maintenanceArduino',
                                 'MessageBody'=> $_GET['body'],
                         ));
 
 
-}
+         $result1 =  $client->purgeQueue(array(
+                'QueueUrl' => 'https://sqs.us-east-1.amazonaws.com/391901324314/maintenance',
+          ));
+
+
+
 ?>
 
     <script>
                         function myFunction() {
                         document.getElementById('text').innerHTML = "Object Retrieved!"
                          }
-                        setTimeout(myFunction,10000);
+                        setTimeout(myFunction,40000);
    </script>
  <button id="myBtn">Back to Object Search!</button>
                         <script type="text/javascript">
